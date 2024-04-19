@@ -33,6 +33,17 @@ android {
 
 dependencies {
 
+    //图片加载框架
+    //https://github.com/bumptech/glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
+    //可以手势缩放图片
+    // https://mvnrepository.com/artifact/com.github.chrisbanes/PhotoView
+    implementation("com.github.chrisbanes:PhotoView:2.3.0")
+    //UI框架
+    implementation("com.qmuiteam:qmui:2.1.0")
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

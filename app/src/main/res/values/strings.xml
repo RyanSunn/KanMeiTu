@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">KanMeiTu</string>
+    <string name="copyright">Copyright c 2024 ryan.All Rights Reserved</string>
+    <string name="inputusername">请输入手机号</string>
+    <string name="inputpassword">请输入密码</string>
+    <string name="error_phone_format">输入手机号错误</string>
+    <string name="error_password_format">密码格式错误</string>
+    <string name="error_login">用户名或密码错误</string>
+    <string name="prompt_input_username">请输入用户名</string>
+    <string name="prompt_input_password">请输入密码</string>
 </resources>
