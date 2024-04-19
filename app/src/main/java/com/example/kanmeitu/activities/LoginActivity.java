@@ -73,6 +73,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //检验账号密码
         if (Constants.USERNAME.equals(username)&&Constants.PASSWORD.equals(password)){
+            //登陆成功
+            finish();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }else {
