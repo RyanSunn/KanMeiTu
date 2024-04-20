@@ -11,12 +11,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.kanmeitu.MainActivity;
 import com.example.kanmeitu.R;
+import com.example.kanmeitu.utils.PreferencesUtil;
 import com.qmuiteam.qmui.util.QMUIActivityLifecycleCallbacks;
 import com.qmuiteam.qmui.util.QMUICollapsingTextHelper;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,18 @@ public class SplashActivity extends AppCompatActivity {
                 next();
             }
         },3000);
+
     }
 
     private void next() {
         finish();
-        Intent intent = new Intent(this, LoginActivity.class);
+
+        Intent intent;
+        if (instance.isLogin()){
+            intent = new Intent(this, MainActivity.class);
+        }else {
+            intent = new Intent(this, LoginActivity.class);
+        }
         startActivity(intent);
 
 

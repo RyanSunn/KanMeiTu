@@ -18,13 +18,13 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.kanmeitu.MainActivity;
 import com.example.kanmeitu.R;
 import com.example.kanmeitu.utils.Constants;
+import com.example.kanmeitu.utils.PreferencesUtil;
 import com.example.kanmeitu.utils.RegularUtil;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private EditText usernameView;
     private EditText passwordView;
     private Button bt_login;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         usernameView = findViewById(R.id.username);
         passwordView = findViewById(R.id.password);
         bt_login = findViewById(R.id.bt1);
+
         bt_login.setOnClickListener(this);
     }
 
@@ -74,6 +75,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //检验账号密码
         if (Constants.USERNAME.equals(username)&&Constants.PASSWORD.equals(password)){
             //登陆成功
+            //登录完成做个标记，下次不用登录
+            instance.setLogin(true);
+            //关闭本界面
             finish();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
