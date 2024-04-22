@@ -3,6 +3,7 @@ package com.example.kanmeitu;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kanmeitu.activities.BaseActivity;
 import com.example.kanmeitu.activities.LoginActivity;
+import com.example.kanmeitu.adapter.ImageAdapter;
 import com.example.kanmeitu.utils.PreferencesUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
@@ -59,6 +64,13 @@ public class MainActivity extends BaseActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         listView.setLayoutManager(layoutManager);
 
+        //添加测试数据
+        ArrayList<String> datas = new ArrayList<>();
+        for (int i = 0; i < 11; i++) {
+            datas.add(String.format("https://dev-courses-quick.oss-cn-beijing.aliyuncs.com/%d.jpg",i));
+        }
+        ImageAdapter adapter = new ImageAdapter(this, datas);
+        listView.setAdapter(adapter);
 
     }
 
