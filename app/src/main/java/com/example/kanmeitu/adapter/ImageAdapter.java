@@ -19,6 +19,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.viewHolder> 
     private final List<String> images;
     private final Context context;
     private final LayoutInflater inflater;
+    private OnItemClickListener listener;
 
     public ImageAdapter(Context context, List<String> images) {
         this.context= context;
@@ -36,11 +37,28 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.viewHolder> 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         holder.bind(images.get(position));
+        if (listener!=null){
+            holder.imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(position);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
         return images.size();
+    }
+
+    //设置点击监听器
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
+
+    public String getData(int position) {
+        return images.get(position);
     }
 
     public class viewHolder extends RecyclerView.ViewHolder{

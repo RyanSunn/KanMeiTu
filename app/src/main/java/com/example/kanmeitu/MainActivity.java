@@ -14,14 +14,19 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kanmeitu.activities.BaseActivity;
+import com.example.kanmeitu.activities.ImageDetailActivity;
 import com.example.kanmeitu.activities.LoginActivity;
 import com.example.kanmeitu.adapter.ImageAdapter;
+import com.example.kanmeitu.adapter.OnItemClickListener;
+import com.example.kanmeitu.utils.Constants;
 import com.example.kanmeitu.utils.PreferencesUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements OnItemClickListener {
+
+    private ImageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +71,21 @@ public class MainActivity extends BaseActivity {
 
         //添加测试数据
         ArrayList<String> datas = new ArrayList<>();
-        for (int i = 0; i < 11; i++) {
+        for (int i = 1 ; i < 11; i++) {
             datas.add(String.format("https://dev-courses-quick.oss-cn-beijing.aliyuncs.com/%d.jpg",i));
         }
-        ImageAdapter adapter = new ImageAdapter(this, datas);
+        adapter = new ImageAdapter(this, datas);
+        adapter.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 
     }
 
+    @Override
+    public void onItemClick(int position) {
+        String data = adapter.getData(position);
+
+        Intent intent = new Intent(this, ImageDetailActivity.class);
+        intent.putExtra(Constants.ID,data);
+        startActivity(intent);
+    }
 }
